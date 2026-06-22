@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venues — Bands in Bend</title>
+  <meta name="description" content="Live music venues in Bend, Oregon — Silver Moon, Tower Theater, Hayden Homes Amphitheater, and more." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .venues-hero {
+      padding: 64px 24px 48px;
+      background: linear-gradient(160deg, #0F0F0F 0%, #1c1208 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .venues-hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .venues-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .venues-sub {
+      font-size: 14px;
+      color: var(--lgray);
+    }
+    .venues-section {
+      padding: 48px 24px 80px;
+    }
+    .venues-grid {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .venue-card {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.15s;
+    }
+    .venue-card:hover { border-color: rgba(232,99,42,0.4); }
+    .venue-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .venue-type {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .venue-desc {
+      font-size: 13px;
+      color: var(--lgray);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">Bands<span>in</span>Bend</a>
+      <nav>
+        <a href="/#shows">This Week</a>
+        <a href="venues.html">Venues</a>
+        <a href="/#newsletter">Newsletter</a>
+        <a href="/#newsletter" class="nav-cta">Get the Rundown</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="venues-hero">
+    <div class="venues-hero-inner">
+      <div class="hero-eyebrow">Bands in Bend</div>
+      <h1 class="venues-title">Bend Music Venues</h1>
+      <p class="venues-sub">Every room in Bend where live music happens.</p>
+    </div>
+  </section>
+
+  <section class="venues-section">
+    <div class="venues-grid">
+
+      <div class="venue-card">
+        <div class="venue-name">Silver Moon Brewing</div>
+        <div class="venue-type">Brewery · Music Venue</div>
+        <p class="venue-desc">One of Bend's most active live music spots, Silver Moon hosts shows nearly every night of the week across multiple genres.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Hayden Homes Amphitheater</div>
+        <div class="venue-type">Outdoor Amphitheater</div>
+        <p class="venue-desc">Bend's premier outdoor concert venue on the Deschutes River, hosting major touring acts from spring through fall.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Tower Theater</div>
+        <div class="venue-type">Historic Theater</div>
+        <p class="venue-desc">A beautifully restored 1940s movie palace in downtown Bend, now one of Central Oregon's top performing arts venues.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Volcanic Theater Pub</div>
+        <div class="venue-type">Bar · Music Venue</div>
+        <p class="venue-desc">An intimate venue with a great sound system and outdoor courtyard, hosting a strong mix of local and touring acts.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Domino Room</div>
+        <div class="venue-type">Music Venue · Bar</div>
+        <p class="venue-desc">Connected to Midtown Ballroom, the Domino Room is a beloved Bend venue for indie, rock, and electronic acts.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">The Commonwealth Pub</div>
+        <div class="venue-type">Bar · Live Music</div>
+        <p class="venue-desc">A neighborhood pub with a consistent live music calendar featuring local acts and open mic nights.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Worthy Brewing</div>
+        <div class="venue-type">Brewery · Live Music</div>
+        <p class="venue-desc">Bend's east side brewery with a spacious taproom and outdoor stage, regularly hosting live music on weekends.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Bevel Craft Brewing</div>
+        <div class="venue-type">Brewery · Live Music</div>
+        <p class="venue-desc">A laid-back craft brewery in Bend with a rotating schedule of local musicians and an outdoor patio.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Rivers Place Taphouse</div>
+        <div class="venue-type">Taphouse · Live Music</div>
+        <p class="venue-desc">A neighborhood taphouse with regular live music bookings in a relaxed, unpretentious setting.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Father Luke's Room</div>
+        <div class="venue-type">Bar · Live Music</div>
+        <p class="venue-desc">An intimate bar with a warm atmosphere and regular live music from local Bend artists.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Northside Bar & Grill</div>
+        <div class="venue-type">Bar & Grill · Live Music</div>
+        <p class="venue-desc">A neighborhood staple on Bend's north side with live music on weekends and a loyal local crowd.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">Dogwood at the Pine Shed</div>
+        <div class="venue-type">Bar · Live Music</div>
+        <p class="venue-desc">A newer addition to Bend's live music scene with late-night bookings and a lively atmosphere.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">On Tap</div>
+        <div class="venue-type">Bar · Live Music</div>
+        <p class="venue-desc">A casual Bend bar with a solid local music calendar and a welcoming neighborhood vibe.</p>
+      </div>
+
+      <div class="venue-card">
+        <div class="venue-name">M&J Tavern</div>
+        <div class="venue-type">Tavern · Live Music</div>
+        <p class="venue-desc">One of Bend's classic neighborhood bars, hosting live music with a relaxed, unpretentious crowd.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Bands<span>in</span>Bend</div>
+      <div class="footer-links">
+        <a href="https://instagram.com/bandsinbend" target="_blank">Instagram</a>
+        <a href="venues.html">Venues</a>
+        <a href="mailto:hello@bandsinbend.com">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 Bands in Bend · Bend, Oregon</div>
+    </div>
+  </footer>
+
+</body>
+</html>

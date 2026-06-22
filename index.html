@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bands in Bend — Live Music in Bend, Oregon</title>
+  <meta name="description" content="Your weekly guide to live music in Bend, Oregon. Shows, venues, and times — updated every week." />
+  <meta property="og:title" content="Bands in Bend" />
+  <meta property="og:description" content="Your weekly guide to live music in Bend, Oregon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bandsinbend.com" />
+  <meta name="theme-color" content="#0F0F0F" />
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">Bands<span>in</span>Bend</a>
+      <nav>
+        <a href="#shows">This Week</a>
+        <a href="venues.html">Venues</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#newsletter" class="nav-cta">Get the Rundown</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── HERO ──────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines" aria-hidden="true">
+      <span style="top:12.5%"></span>
+      <span style="top:25%"></span>
+      <span style="top:37.5%"></span>
+      <span style="top:50%"></span>
+      <span style="top:62.5%"></span>
+      <span style="top:75%"></span>
+      <span style="top:87.5%"></span>
+    </div>
+    <div class="hero-content">
+      <div>
+        <div class="hero-eyebrow">Bands in Bend</div>
+        <h1 class="hero-title">THIS<br>WEEK<br>IN BEND</h1>
+        <div class="hero-rule"></div>
+        <div class="hero-sub">Your Bend Music Guide</div>
+        <div class="hero-week">
+          <strong id="week-label">This Week</strong>
+          &nbsp;·&nbsp; Bend, Oregon
+        </div>
+      </div>
+      <div class="highlights-card">
+        <div class="highlights-label">This Week's Highlights</div>
+        <div id="highlights-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DAY NAV ───────────────────────────── -->
+  <nav class="week-nav" aria-label="Filter by day">
+    <div class="week-nav-inner" id="week-nav"></div>
+  </nav>
+
+  <!-- ── SHOWS ─────────────────────────────── -->
+  <section class="shows-section" id="shows">
+    <div class="shows-inner" id="shows-container"></div>
+  </section>
+
+  <!-- ── NEWSLETTER ────────────────────────── -->
+  <section class="newsletter" id="newsletter">
+    <div class="newsletter-eyebrow">Stay in the loop</div>
+    <h2 class="newsletter-title">The Bend Live Music Rundown</h2>
+    <p class="newsletter-sub">Every Thursday. Every show. In your inbox.</p>
+    <form class="newsletter-form" id="newsletter-form" netlify>
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Bands<span>in</span>Bend</div>
+      <div class="footer-links">
+        <a href="https://instagram.com/bandsinbend" target="_blank">Instagram</a>
+        <a href="venues.html">Venues</a>
+        <a href="mailto:hello@bandsinbend.com">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 Bands in Bend · Bend, Oregon</div>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ───────────────────────────── -->
+  <script src="js/shows.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
