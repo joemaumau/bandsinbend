@@ -10,15 +10,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bandsinbend.com" />
   <meta name="theme-color" content="#0F0F0F" />
-
-  <!-- Favicon placeholder -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>" />
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ── HEADER ─────────────────────────────── -->
   <header>
     <div class="header-inner">
       <a href="/" class="logo">Bands<span>in</span>Bend</a>
@@ -31,7 +27,6 @@
     </div>
   </header>
 
-  <!-- ── HERO ──────────────────────────────── -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-lines" aria-hidden="true">
@@ -61,41 +56,36 @@
     </div>
   </section>
 
-  <!-- ── DAY NAV ───────────────────────────── -->
   <nav class="week-nav" aria-label="Filter by day">
     <div class="week-nav-inner" id="week-nav"></div>
   </nav>
 
-  <!-- ── SHOWS ─────────────────────────────── -->
   <section class="shows-section" id="shows">
     <div class="shows-inner" id="shows-container"></div>
   </section>
 
-  <!-- ── NEWSLETTER ────────────────────────── -->
   <section class="newsletter" id="newsletter">
     <div class="newsletter-eyebrow">Stay in the loop</div>
     <h2 class="newsletter-title">The Bend Live Music Rundown</h2>
     <p class="newsletter-sub">Every Thursday. Every show. In your inbox.</p>
-    <form class="newsletter-form" id="newsletter-form" netlify>
+    <form class="newsletter-form" id="newsletter-form">
       <input type="email" name="email" placeholder="your@email.com" required />
       <button type="submit">Subscribe</button>
     </form>
   </section>
 
-  <!-- ── FOOTER ────────────────────────────── -->
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">Bands<span>in</span>Bend</div>
       <div class="footer-links">
         <a href="https://www.instagram.com/bands_in_bend" target="_blank">Instagram</a>
         <a href="venues.html">Venues</a>
-        <a href="mailto:andsinbend@gmail.com">Contact</a>
+        <a href="mailto:bandsinbend@gmail.com">Contact</a>
       </div>
       <div class="footer-copy">© 2026 Bands in Bend · Bend, Oregon</div>
     </div>
   </footer>
 
-  <!-- ── SCRIPTS ───────────────────────────── -->
   <script src="shows.js"></script>
   <script src="main.js"></script>
 
