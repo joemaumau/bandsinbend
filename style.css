@@ -70,14 +70,15 @@ header {
 }
 
 .logo {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--cream);
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
 }
 
-.logo span { color: var(--orange); }
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
 
 nav {
   display: flex;
