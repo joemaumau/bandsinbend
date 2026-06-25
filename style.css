@@ -564,7 +564,8 @@ footer {
     margin-bottom: 16px;
   }
 
-  .highlights-card { display: none; }
+  /* Stack the highlights card below the hero instead of hiding it */
+  .highlights-card { width: 100%; }
 
   .show-item {
     grid-template-columns: 1fr;
