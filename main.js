@@ -34,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     SHOWS.forEach(d => {
       const btn = document.createElement('button');
       btn.className = 'day-btn';
-      btn.dataset.day = d.day;
-      btn.textContent = d.day;
+      const [mon, dayNum] = d.date.split(' ');
+      btn.dataset.day = d.date.toLowerCase().replace(/\s+/g, '-');
+      btn.textContent = `${d.day.slice(0, 3)} ${mon.slice(0, 3)} ${dayNum}`;
       weekNav.appendChild(btn);
     });
   }
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const showsContainer = document.getElementById('shows-container');
   if (showsContainer && typeof SHOWS !== 'undefined') {
     showsContainer.innerHTML = SHOWS.map(dayData => `
-      <div class="day-block" data-day="${dayData.day}" id="day-${dayData.day.toLowerCase()}">
+      <div class="day-block" data-day="${dayData.date.toLowerCase().replace(/\s+/g, '-')}" id="day-${dayData.date.toLowerCase().replace(/\s+/g, '-')}">
         <div class="day-header">
           <div class="day-name">${dayData.day.toUpperCase()}</div>
           <div class="day-date">${dayData.date}</div>
