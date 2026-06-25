@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = form.querySelector('input[type="email"]').value;
       if (!email) return;
       // Replace this with your Mailchimp embed action URL
-      form.innerHTML = `<p style="color: var(--gold); font-size: 14px; font-weight: 600;">
+      form.innerHTML = `<p style="color: var(--gold); font-size: 20px; font-weight: 600; text-align: center; width: 100%; margin: 0;">
         You're in. See you Thursday. 🎸
       </p>`;
     });
