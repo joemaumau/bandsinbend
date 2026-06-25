@@ -1,0 +1,5 @@
+# Local Claude Code preview/scaffolding — not part of the site
+.claude/
+
+# macOS
+.DS_Store
