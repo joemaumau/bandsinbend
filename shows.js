@@ -132,9 +132,9 @@ const SHOWS = [
 
 // Highlights shown on the cover — update each week
 const HIGHLIGHTS = [
-  { artist: "Goldpine", day: "Tue" },
-  { artist: "Amelia Day", day: "Wed" },
-  { artist: "Moontricks", day: "Thu" },
-  { artist: "Rambler Kane", day: "Fri" },
-  { artist: "Juju Eyeball", day: "Sat" },
+  { artist: "Goldpine", day: "Tue Jun 30" },
+  { artist: "Amelia Day", day: "Wed Jul 1" },
+  { artist: "Moontricks", day: "Thu Jul 2" },
+  { artist: "Rambler Kane", day: "Fri Jul 3" },
+  { artist: "Juju Eyeball", day: "Sat Jul 4" },
 ];
