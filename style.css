@@ -525,9 +525,43 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
+  /* Header: stack the logo over a centered, wrapping nav row */
+  header { position: static; padding: 0 16px; }
+
+  .header-inner {
+    flex-direction: column;
+    height: auto;
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .logo { justify-content: center; }
+  .logo img { max-width: 190px; }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+
+  nav a { font-size: 11px; letter-spacing: 0.08em; }
+  .nav-cta { padding: 6px 14px; font-size: 11px !important; }
+
+  /* Day filter pins to the viewport top once the static header scrolls away */
+  .week-nav { top: 0; }
+
+  /* Hero: let the type and spacing scale down on small screens */
+  .hero { padding: 44px 20px 40px; }
+
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(40px, 12vw, 72px);
+    margin-bottom: 16px;
   }
 
   .highlights-card { display: none; }
@@ -541,8 +575,6 @@ footer {
   .newsletter-form {
     flex-direction: column;
   }
-
-  nav { display: none; }
 }
 
 /* ── SHOW COUNT BADGE ── */
