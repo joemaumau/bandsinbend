@@ -57,8 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="show-artist">${show.artist}</div>
                 <div class="show-meta">
                   <span class="show-venue">${show.venue}</span>
-                  <span class="show-dot">·</span>
-                  <span class="show-time">${show.time}</span>
                 </div>
               </div>
               <div class="show-time-badge">${show.time}</div>

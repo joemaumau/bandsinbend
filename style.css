@@ -567,12 +567,6 @@ footer {
   /* Stack the highlights card below the hero instead of hiding it */
   .highlights-card { width: 100%; }
 
-  .show-item {
-    grid-template-columns: 1fr;
-  }
-
-  .show-time-badge { display: none; }
-
   .newsletter-form {
     flex-direction: column;
   }
