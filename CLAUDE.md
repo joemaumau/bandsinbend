@@ -93,10 +93,14 @@ const SHOWS = [
 ];
 
 const HIGHLIGHTS = [
-  { artist: "Featured Artist", day: "Mon" },
+  { artist: "Featured Artist", day: "Mon Jun 22" },
   // ... 4-5 highlights
 ];
 ```
+
+The `day` field holds a short day + date label (e.g. `"Mon Jun 22"`), matching the
+format of the day-filter buttons. Always include the date — not just the weekday —
+so highlights stay unambiguous, especially when a listing spans two calendar weeks.
 
 ### Days order
 Always list days Monday through Sunday. If a day has no shows, omit it entirely.
