@@ -81,7 +81,7 @@ const SHOWS = [
       { artist: "Amelia Day", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Brent Alan & Brother Gabe Duo", venue: "Father Luke's Room", time: "7pm" },
       { artist: "Eric Leadbetter", venue: "Tetherow Resort", time: "5pm" },
-      { artist: "Kurt Silva and Cynthia West", venue: "The Commonwealth Pub", time: "TBD" },
+      { artist: "Kurt Silva and Cynthia West", venue: "The Commonwealth Pub", time: "7:30pm" },
     ],
   },
   {
@@ -116,7 +116,7 @@ const SHOWS = [
     shows: [
       { artist: "Brent Alan & His Funky Friends", venue: "On Tap", time: "8pm" },
       { artist: "Call Down Thunder", venue: "Silver Moon Brewing", time: "6pm" },
-      { artist: "JuJu Eyeball – Fourth of July Party", venue: "The Commonwealth Pub", time: "TBD" },
+      { artist: "JuJu Eyeball – Fourth of July Party", venue: "The Commonwealth Pub", time: "7pm" },
       { artist: "Midnight Cove", venue: "On Tap", time: "5pm" },
     ],
   },
