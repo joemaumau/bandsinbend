@@ -88,7 +88,7 @@ const SHOWS = [
     day: "Thursday",
     date: "July 2",
     shows: [
-      { artist: "Blackstrap Bluegrass", venue: "Rivers Place Taphouse", time: "TBD" },
+      { artist: "Blackstrap Bluegrass", venue: "Rivers Place Taphouse", time: "6pm" },
       { artist: "Broken Top Bluegrass", venue: "Bevel Brewing Company", time: "6pm" },
       { artist: "Cherry: A Perfect Vinyl Night w/ DJ Timothy Bee", venue: "Dogwood at The Pine Shed", time: "7pm" },
       { artist: "Gabriel Cox Band", venue: "Silver Moon Brewing", time: "7pm" },
