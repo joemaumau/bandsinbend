@@ -116,18 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dayBlocks().forEach(block => observer.observe(block));
   }, 100);
 
-  // ── Newsletter form ─────────────────────────
-  const form = document.getElementById('newsletter-form');
-  if (form) {
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const email = form.querySelector('input[type="email"]').value;
-      if (!email) return;
-      // Replace this with your Mailchimp embed action URL
-      form.innerHTML = `<p style="color: var(--gold); font-size: 20px; font-weight: 600; text-align: center; width: 100%; margin: 0;">
-        You're in. See you Thursday. 🎸
-      </p>`;
-    });
-  }
+  // Newsletter signup is handled by the Sender.net embedded form (see index.html)
 
 });

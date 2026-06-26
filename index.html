@@ -67,10 +67,10 @@
     <div class="newsletter-eyebrow">Stay in the loop</div>
     <h2 class="newsletter-title">The Bend Live Music Rundown</h2>
     <p class="newsletter-sub">Every Thursday. Every show. In your inbox.</p>
-    <form class="newsletter-form" id="newsletter-form">
-      <input type="email" name="email" placeholder="your@email.com" required />
-      <button type="submit">Subscribe</button>
-    </form>
+    <div class="newsletter-embed">
+      <!-- Sender.net embedded signup form -->
+      <div class="sender-form-field" data-sender-form-id="dL9y6j"></div>
+    </div>
   </section>
 
   <footer>
@@ -85,6 +85,26 @@
       <div class="footer-credit">Site by <a href="https://jdmcreative.co" target="_blank" rel="noopener">JDM Creative</a></div>
     </div>
   </footer>
+
+  <!-- Sender.net -->
+  <script>
+    (function (s, e, n, d, er) {
+      s['Sender'] = er;
+      s[er] = s[er] || function () {
+        (s[er].q = s[er].q || []).push(arguments)
+      }, s[er].l = 1 * new Date();
+      s[er].on = function(event, callback) {
+        s[er].listeners = s[er].listeners || {};
+        (s[er].listeners[event] = s[er].listeners[event] || []).push(callback);
+      };
+      var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+      a.async = 1;
+      a.src = d;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://cdn.sender.net/accounts_resources/universal.js', 'sender');
+    sender('7b1d3a0c8d6841')
+  </script>
 
   <script src="shows.js"></script>
   <script src="main.js"></script>
