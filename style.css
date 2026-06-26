@@ -523,6 +523,17 @@ footer {
   margin-top: 8px;
 }
 
+.footer-credit {
+  font-size: 11px;
+  color: var(--gray);
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.footer-credit a { color: var(--gold); }
+.footer-credit a:hover { color: var(--orange); }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   /* Header: stack the logo over a centered, wrapping nav row */
