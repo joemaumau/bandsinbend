@@ -132,9 +132,6 @@ const SHOWS = [
 
 // Highlights shown on the cover — update each week
 const HIGHLIGHTS = [
-  { artist: "Parker McCollum", day: "Fri Jun 26" },
-  { artist: "Surf Hat", day: "Fri Jun 26" },
-  { artist: "Rhiannon Giddens", day: "Sat Jun 27" },
   { artist: "Goldpine", day: "Tue Jun 30" },
   { artist: "Amelia Day", day: "Wed Jul 1" },
   { artist: "Moontricks", day: "Thu Jul 2" },
