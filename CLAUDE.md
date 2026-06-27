@@ -105,6 +105,26 @@ so highlights stay unambiguous, especially when a listing spans two calendar wee
 ### Days order
 Always list days Monday through Sunday. If a day has no shows, omit it entirely.
 
+### Verify & correct venue spellings
+Venue names in the lineup notes are often misspelled or use unofficial variants.
+For every venue in a weekly update, verify the spelling against the venue's official
+name using the web search tool (check the venue's own site / Visit Bend / Facebook),
+and correct it in `shows.js` — keep the matching `venues.html` card aligned. Examples
+already corrected: "Volcanic Theater" → "Volcanic Theatre Pub", "Tower Theater" →
+"Tower Theatre". This is a deliberate exception to the "enter venue names exactly as
+provided" note below — venue spellings ARE corrected; artist names and times are still
+entered exactly as provided unless the user asks otherwise.
+
+### New venues → add a card to venues.html
+Whenever the weekly lineup introduces a venue that does NOT already have a card in
+`venues.html`, add a `.venue-card` for it as part of the same update. Append new cards
+at the end of the `.venues-grid` (the established pattern — newer venues go last).
+Each card has three parts: `.venue-name` (exact venue name), `.venue-type` (e.g.
+"Brewery · Live Music"), and `.venue-desc` (one short sentence in the existing tone).
+Watch for naming variants of an existing venue (e.g. "Domino Room" vs "The Domino Room")
+— those are the SAME venue and should NOT get a duplicate card; flag the inconsistency
+instead. Remember to `git add venues.html` alongside `shows.js` when a card was added.
+
 ### Update prompt to use with Claude Code
 Paste the week's show listings and say:
 > "Update shows.js with this week's lineup. Week is [date range]."
@@ -183,6 +203,7 @@ Common Bend venues for shows.js entries:
 - Always edit `shows.js` only for weekly updates — do not modify `main.js`, `style.css`, `index.html`, or `venues.html` unless explicitly asked
 - When updating shows, preserve the exact JS variable names: `WEEK`, `SHOWS`, `HIGHLIGHTS`
 - Do not add `export` statements — these are plain script tags, not ES modules
-- Artist names, venue names, and times should be entered exactly as provided — do not correct spelling or standardize formatting unless asked
+- Artist names and times should be entered exactly as provided — do not correct spelling or standardize formatting unless asked
+- Venue names ARE the exception: verify each against its official spelling via web search and correct it (see "Verify & correct venue spellings" above)
 - Days run Monday through Sunday
 - After editing, remind the user to commit with: `git add shows.js && git commit -m "Update shows: [week]" && git push`
