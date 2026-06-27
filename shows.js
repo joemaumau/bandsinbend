@@ -29,14 +29,14 @@ const SHOWS = [
       { artist: "Parker McCollum w/ Vincent Mason, Aubrie Sellers", venue: "Hayden Homes Amphitheater", time: "6:30pm" },
       { artist: "Party in the Back", venue: "Worthy Brewing", time: "7pm" },
       { artist: "Surf Hat", venue: "Domino Room", time: "7pm" },
-      { artist: "The Chilling Alpine Adventure", venue: "Silver Moon", time: "7pm" },
+      { artist: "The Chilling Alpine Adventure", venue: "Silver Moon Brewing", time: "7pm" },
     ],
   },
   {
     day: "Saturday",
     date: "June 27",
     shows: [
-      { artist: "Bend Blues Fest", venue: "Silver Moon", time: "12pm" },
+      { artist: "Bend Blues Fest", venue: "Silver Moon Brewing", time: "12pm" },
       { artist: "Chris Beland", venue: "On Tap", time: "6pm" },
       { artist: "Dizgo & Mamasboy", venue: "The Domino Room", time: "8pm" },
       { artist: "Dry Canyon Stampede", venue: "Worthy Brewing", time: "7pm" },
@@ -61,8 +61,9 @@ const SHOWS = [
     day: "Monday",
     date: "June 29",
     shows: [
-      { artist: "Bluegrass Collective", venue: "Silver Moon", time: "6pm" },
+      { artist: "Bluegrass Collective", venue: "Silver Moon Brewing", time: "6pm" },
       { artist: "Bong Wizard, Sandkrawler, Vacancy Floor, & James G", venue: "The Domino Room", time: "8:30pm" },
+      { artist: "Franchot Tone", venue: "On Tap", time: "6pm" },
     ],
   },
   {
@@ -70,6 +71,7 @@ const SHOWS = [
     date: "June 30",
     shows: [
       { artist: "Goldpine", venue: "Silver Moon Brewing", time: "6:30pm" },
+      { artist: "N.Fennel & K. Bryant", venue: "Goodlife Brewing Company", time: "6pm" },
       { artist: "Open Jam by Mari", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Sean Alan & Jazz On the Side", venue: "The Commonwealth Pub", time: "7pm" },
     ],
@@ -80,6 +82,7 @@ const SHOWS = [
     shows: [
       { artist: "Amelia Day", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Brent Alan & Brother Gabe Duo", venue: "Father Luke's Room", time: "7pm" },
+      { artist: "Danger Gently & Friends", venue: "The Cellar", time: "6pm" },
       { artist: "Eric Leadbetter", venue: "Tetherow Resort", time: "5pm" },
       { artist: "Kurt Silva and Cynthia West", venue: "The Commonwealth Pub", time: "7:30pm" },
     ],
@@ -90,6 +93,7 @@ const SHOWS = [
     shows: [
       { artist: "Blackstrap Bluegrass", venue: "Rivers Place Taphouse", time: "6pm" },
       { artist: "Broken Top Bluegrass", venue: "Bevel Brewing Company", time: "6pm" },
+      { artist: "Burn The Wolf, Vanderwalls & Idiocentric", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Cherry: A Perfect Vinyl Night w/ DJ Timothy Bee", venue: "Dogwood at The Pine Shed", time: "7pm" },
       { artist: "Gabriel Cox Band", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Moontricks w/ Mamas Boy", venue: "Drake Park Munch & Music", time: "5:30pm" },
@@ -103,6 +107,7 @@ const SHOWS = [
     shows: [
       { artist: "Band of Comerados", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Chris Beland", venue: "Father Luke's Room", time: "7pm" },
+      { artist: "First Friday Live Music", venue: "Bend Brewing Company", time: "7pm" },
       { artist: "G-Bots & The Journeymen", venue: "The Commons Cafe & Taproom", time: "6:30pm" },
       { artist: "Rambler Kane", venue: "On Tap", time: "6pm" },
       { artist: "Smoker Dad & Family Worship Center", venue: "Silver Moon Brewing", time: "7pm" },
@@ -124,8 +129,11 @@ const SHOWS = [
     day: "Sunday",
     date: "July 5",
     shows: [
+      { artist: "Bigfoot County", venue: "Goodlife Brewing Company", time: "4pm" },
       { artist: "Bong Wizard, Sandkrawler, Vacancy Floor, & James G", venue: "The Domino Room", time: "8:30pm" },
       { artist: "Eric Leadbetter & Pete Kartsounes", venue: "Rivers Place Taphouse", time: "6pm" },
+      { artist: "Eyeliner w/ DJ Filthy, The Figurehead", venue: "The Capital", time: "8pm" },
+      { artist: "Float Like A Buffalo", venue: "Silver Moon Brewing", time: "6pm" },
     ],
   },
 ];
