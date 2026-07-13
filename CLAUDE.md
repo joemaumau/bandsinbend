@@ -119,8 +119,11 @@ entered exactly as provided unless the user asks otherwise.
 Whenever the weekly lineup introduces a venue that does NOT already have a card in
 `venues.html`, add a `.venue-card` for it as part of the same update. Append new cards
 at the end of the `.venues-grid` (the established pattern — newer venues go last).
-Each card has three parts: `.venue-name` (exact venue name), `.venue-type` (e.g.
-"Brewery · Live Music"), and `.venue-desc` (one short sentence in the existing tone).
+Each card has four parts: `.venue-name` (exact venue name), `.venue-type` (e.g.
+"Brewery · Live Music"), `.venue-desc` (one short sentence in the existing tone), and
+`.venue-links` (a Website and/or Instagram `<a target="_blank" rel="noopener">`). Verify
+each link's official URL via web search; add whichever exists (some venues have only one).
+Strip tracking params from URLs (e.g. Instagram `?igsh=…` share tokens).
 Watch for naming variants of an existing venue (e.g. "Domino Room" vs "The Domino Room")
 — those are the SAME venue and should NOT get a duplicate card; flag the inconsistency
 instead. Remember to `git add venues.html` alongside `shows.js` when a card was added.
