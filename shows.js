@@ -71,6 +71,7 @@ const SHOWS = [
     day: "Friday",
     date: "July 31",
     shows: [
+      { artist: "Bands For Bread Benefit Concert ft. Anaphora, Doublejump, Chiggi Momo, The Inspectors, Jackrat, Long Operators, Thoughtbox, & Not Your Ex Lover", venue: "Boneyard Pub", time: "12pm-9pm" },
       { artist: "Chris Beland", venue: "Riverhouse Lodge", time: "7pm" },
       { artist: "Deltaphonic & Sam B Newman Band", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "DJ Briantology", venue: "Portello Wine Cafe", time: "7:30pm" },
@@ -82,7 +83,6 @@ const SHOWS = [
       { artist: "KR3TURE w/ King Kairos, Shalyssa, & Dalllea", venue: "Volcanic Theatre Pub", time: "5pm" },
       { artist: "Legend Zepplin", venue: "The Domino Room", time: "9pm" },
       { artist: "Linda Quon & Hello Trouble", venue: "The Commonwealth Pub", time: "8pm" },
-      { artist: "Lost Operators", venue: "Boneyard Pub", time: "6pm" },
       { artist: "Lunch Lady, The Inspectors, & RustMouth", venue: "M&J Tavern", time: "9pm" },
       { artist: "Steve Earle", venue: "Tower Theatre", time: "7:30pm" },
     ],
