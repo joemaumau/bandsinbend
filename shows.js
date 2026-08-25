@@ -15,7 +15,7 @@ const SHOWS = [
     shows: [
       { artist: "Austin B. Sweeney", venue: "On Tap", time: "6pm" },
       { artist: "Bluegrass Collective", venue: "Silver Moon Brewing", time: "6pm" },
-      { artist: "Joyful Lane", venue: "River Run Taphouse", time: "5pm" },
+      { artist: "Joyful Lane", venue: "Rivers Place Taphouse", time: "5pm" },
       { artist: "Musicians Open Showcase", venue: "The Commonwealth Pub", time: "5pm" },
       { artist: "Toast - The Beast of Bread", venue: "Tower Theatre", time: "7pm" },
       { artist: "Weekly Live Music", venue: "Bend Brewing Company", time: "6pm" },
@@ -28,7 +28,7 @@ const SHOWS = [
       { artist: "Chewtoy", venue: "The Commonwealth Pub", time: "7pm" },
       { artist: "Eric Leadbetter", venue: "Goodlife Brewing Company", time: "6pm" },
       { artist: "The Hip Abduction & Coyote Island", venue: "Midtown Ballroom", time: "7pm" },
-      { artist: "Lave Butte Boys", venue: "Deschutes Brewery Beer Garden", time: "5pm" },
+      { artist: "Lava Butte Boys", venue: "Deschutes Brewery Beer Garden", time: "5pm" },
       { artist: "Nether Hour & Guests", venue: "Silver Moon Brewing", time: "6pm" },
       { artist: "Open Mic w/ Mari", venue: "The Cellar", time: "6pm" },
       { artist: "The Strokes w/ The Garden & ÖLÜM", venue: "Hayden Homes Amphitheater", time: "6pm" },
