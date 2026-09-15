@@ -53,7 +53,7 @@ const SHOWS = [
       { artist: "Open Mic hosted by Mason James", venue: "Teal Tea & Art Lounge", time: "6pm" },
       { artist: "Sakoyana", venue: "Rivers Place Taphouse", time: "6pm" },
       { artist: "Soul'd Out", venue: "Stoller Wine Bar", time: "6pm" },
-      { artist: "Vieux Farka Tourè & Muhlaika", venue: "The Domino Room", time: "7pm" },
+      { artist: "Vieux Farka Touré & Muhlaika", venue: "The Domino Room", time: "7pm" },
       { artist: "Whipsaw ft. members of Hillstomp & The Taxpayers", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Led Zepagain", venue: "Tower Theatre", time: "7:30pm" },
       { artist: "Jared McComas", venue: "The Stihl Whiskey Bar", time: "8pm" },
@@ -70,7 +70,7 @@ const SHOWS = [
       { artist: "Heaven Zest w/ Skip Wicked & Emily Turner", venue: "Volcanic Theatre Pub", time: "6pm" },
       { artist: "Joyful Lane", venue: "Lazy Z Ranch", time: "6pm" },
       { artist: "Lickety Split", venue: "Runaround Sue Barbecue", time: "6pm" },
-      { artist: "Riley Green w/ Randy Houser, Kushus Culpepper & Hannah McFarland", venue: "Hayden Homes Amphitheater", time: "6pm" },
+      { artist: "Riley Green w/ Randy Houser, Kashus Culpepper & Hannah McFarland", venue: "Hayden Homes Amphitheater", time: "6pm" },
       { artist: "Chained To Stone", venue: "Blacksmith Public House", time: "6:30pm" },
       { artist: "Langdon Bradley", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "American Aquarium", venue: "Silver Moon Brewing", time: "7pm" },
@@ -131,7 +131,7 @@ const SHOWS = [
 // Highlights shown on the cover — update each week
 const HIGHLIGHTS = [
   { artist: "Oregon Fryer", day: "Tue Sep 15" },
-  { artist: "Vieux Farka Tourè", day: "Thu Sep 17" },
+  { artist: "Vieux Farka Touré", day: "Thu Sep 17" },
   { artist: "Riley Green", day: "Fri Sep 18" },
   { artist: "Atillion & Robot Mushroom", day: "Sat Sep 19" },
   { artist: "Bleachers", day: "Sun Sep 20" },
