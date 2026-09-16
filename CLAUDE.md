@@ -128,6 +128,26 @@ Watch for naming variants of an existing venue (e.g. "Domino Room" vs "The Domin
 — those are the SAME venue and should NOT get a duplicate card; flag the inconsistency
 instead. Remember to `git add venues.html` alongside `shows.js` when a card was added.
 
+### Step 0 (optional): auto-fetch a draft first
+`scripts/fetch_shows.py` pulls listings from public sources (Bend Source "Live Music"
+calendar, Bend Bulletin's weekly live-music column when it runs, Eventbrite, and
+venue sites with structured events — see `VENUE_PAGES` in the script) and writes a
+draft in the exact `shows.js` format plus a review report:
+
+```bash
+python3 scripts/fetch_shows.py                      # next Monday's week → drafts/
+python3 scripts/fetch_shows.py --week 2026-09-21    # a specific week
+python3 scripts/fetch_shows.py --week 2026-09-14 --compare shows.js   # measure recall
+```
+
+Best run on **Tuesday** (Bend Source has the fullest week by then). Stdlib only, no
+installs. `drafts/` is git-ignored. The report lists **unknown venues** — add an alias
+to `scripts/venue_aliases.json` (name variant → the exact `venues.html` name) or add a
+venue card. It typically finds roughly a third to a half of the week's shows (venues
+whose sites are JS-rendered or Instagram-only — Silver Moon, Rivers Place, Tower,
+Hayden Homes, most bars — still need a manual check), so treat the draft as a head
+start to review against Instagram, not the finished lineup.
+
 ### Update prompt to use with Claude Code
 Paste the week's show listings and say:
 > "Update shows.js with this week's lineup. Week is [date range]."
