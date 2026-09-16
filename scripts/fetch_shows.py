@@ -20,8 +20,12 @@ Sources (each is best-effort; a failing source is reported, not fatal):
     eventbrite   eventbrite.com Bend music search
     jsonld       schema.org Event blocks on venue sites (see VENUE_PAGES)
     squarespace  Squarespace event lists on venue sites (see VENUE_PAGES)
+    ics          iCalendar feeds (e.g. Silver Moon's Facebook-events widget export)
+    playwright   JS-rendered venue pages (Tower Theatre) — needs the optional
+                 Playwright install below; skipped with a note if it's missing
 
-Stdlib only — no pip installs needed.
+Stdlib only for everything except the playwright sources. To enable those:
+    pip3 install --user playwright && python3 -m playwright install chromium
 """
 
 import argparse
@@ -42,11 +46,19 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 
 # Venue pages with machine-readable events. Add more as they're discovered.
-# kind: "jsonld" (schema.org Event blocks) or "squarespace" (eventlist markup)
+# kind: "jsonld" (schema.org Event blocks), "squarespace" (eventlist markup),
+#       "ics" (iCalendar feed), or "playwright" (JS-rendered; needs a "parser")
 VENUE_PAGES = [
     {"kind": "jsonld", "venue": "Volcanic Theatre Pub", "url": "https://volcanictheatre.com/calendar"},
     {"kind": "squarespace", "venue": "Worthy Brewing", "url": "https://www.worthy.beer/events"},
+    # Silver Moon's site embeds a SociableKIT widget of their Facebook events; it exports ICS.
+    {"kind": "ics", "venue": "Silver Moon Brewing", "url": "https://data.accentapi.com/widget_export_calendar/105713"},
+    # Tower's Webflow CMS list is loaded client-side, so it has to be rendered.
+    {"kind": "playwright", "parser": "tower_webflow", "venue": "Tower Theatre", "url": "https://www.towertheatre.org/events/"},
 ]
+
+# Tower Theatre category tags that mean "a concert" (skips Movies, Speakers, Dance, Comedy…)
+TOWER_MUSIC_CATS = {"Concerts", "Rock/Pop", "Country/Folk", "Global", "Classical/Chamber", "R&B", "Jazz", "Blues"}
 
 BENDSOURCE_LIVE_MUSIC = "2176893"   # eventCategory id for "Live Music"
 
@@ -69,9 +81,19 @@ class Fetcher:
         self.use_cache = use_cache
         os.makedirs(cache_dir, exist_ok=True)
 
+    def _path(self, key):
+        return os.path.join(self.cache_dir, hashlib.sha1(key.encode()).hexdigest())
+
+    def get_cached(self, key):
+        p = self._path(key)
+        return open(p, encoding="utf-8").read() if self.use_cache and os.path.exists(p) else None
+
+    def put_cached(self, key, body):
+        with open(self._path(key), "w", encoding="utf-8") as fh:
+            fh.write(body)
+
     def get(self, url, timeout=30):
-        key = hashlib.sha1(url.encode()).hexdigest()
-        path = os.path.join(self.cache_dir, key)
+        path = self._path(url)
         if self.use_cache and os.path.exists(path):
             return open(path, encoding="utf-8").read()
         req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html,*/*"})
@@ -195,6 +217,109 @@ def strip_venue_from_artist(artist, venue_raw, venue_canon):
             a = a[:m.start()].strip()
     a = re.sub(r"\s*[-–|:]\s*(live music|live at .*|live)$", "", a, flags=re.I).strip(" -–|")
     return a or artist
+
+
+def titlecase_if_shouting(s):
+    """Facebook event names often arrive ALL CAPS; make them readable for the draft."""
+    letters = [c for c in s if c.isalpha()]
+    if letters and sum(c.isupper() for c in letters) / len(letters) > 0.9:
+        small = {"a", "an", "and", "at", "by", "for", "in", "of", "on", "or", "the", "to", "w", "with", "ft", "feat"}
+        words = s.lower().split(" ")
+        out = []
+        for i, w in enumerate(words):
+            core = re.sub(r"[^a-z0-9']", "", w)
+            if i and core in small:
+                out.append(w)
+            elif w.startswith("dj") and len(w) <= 3:
+                out.append("DJ")
+            else:
+                out.append(w[:1].upper() + w[1:])
+        return " ".join(out)
+    return s
+
+
+def parse_ics(text):
+    """Yield (datetime_local, summary, url) for each VEVENT in an iCalendar feed."""
+    text = re.sub(r"\r?\n[ \t]", "", text)          # unfold continuation lines
+    for block in re.findall(r"BEGIN:VEVENT(.*?)END:VEVENT", text, re.S):
+        props = {}
+        for line in block.strip().split("\n"):
+            if ":" not in line:
+                continue
+            key, _, val = line.partition(":")
+            name, _, params = key.partition(";")
+            props[name.upper()] = (params, val.strip())
+        if "DTSTART" not in props:
+            continue
+        params, val = props["DTSTART"]
+        m = re.match(r"(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})?)?(Z?)", val)
+        if not m:
+            continue
+        y, mo, d, hh, mm, ss, z = m.groups()
+        when = dt.datetime(int(y), int(mo), int(d), int(hh or 0), int(mm or 0))
+        if z:
+            when = when.replace(tzinfo=dt.timezone.utc).astimezone(TZ)
+        else:
+            tzid = re.search(r"TZID=([^;]+)", params)
+            try:
+                when = when.replace(tzinfo=ZoneInfo(tzid.group(1)) if tzid else TZ).astimezone(TZ)
+            except Exception:
+                when = when.replace(tzinfo=TZ)
+        summary = html.unescape(props.get("SUMMARY", ("", ""))[1]).replace("\\,", ",").replace("\\;", ";")
+        yield when, summary, props.get("URL", ("", ""))[1]
+
+
+def render_with_playwright(url, log, scrolls=8):
+    """Return fully rendered HTML, or None (with a logged hint) if Playwright isn't installed."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        log("playwright not installed — skipping JS-rendered venue pages "
+            "(pip3 install --user playwright && python3 -m playwright install chromium)")
+        return None
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(user_agent=UA)
+        page.goto(url, wait_until="networkidle", timeout=60000)
+        page.wait_for_timeout(1500)
+        for _ in range(scrolls):
+            page.mouse.wheel(0, 4000)
+            page.wait_for_timeout(400)
+        content = page.content()
+        browser.close()
+    return content
+
+
+def parse_tower_webflow(h, lo, hi):
+    """Tower Theatre's Webflow CMS list: cards with name, 'Sep 17' @ '7:30 pm', category tags."""
+    out = []
+    cards = re.split(r'<div role="listitem" class="upcoming_events_list_item', h)[1:]
+    for c in cards:
+        name = re.search(r'fs-cmsfilter-field="event-name"[^>]*>([^<]*)', c)
+        if not name:
+            continue
+        cats = set(html.unescape(x) for x in re.findall(r'fs-cmsfilter-field="category"[^>]*>([^<]*)', c))
+        if not (cats & TOWER_MUSIC_CATS):
+            continue
+        ex = re.findall(r'class="events_card-extract">([^<]*)<', c)
+        if len(ex) < 2:
+            continue
+        href = re.search(r'href="(/event/[^"]*)"', c)
+        yr = re.search(r"-(\d{1,2})-(\d{1,2})-(\d{2})(?:-|$|\")", href.group(1) + '"') if href else None
+        try:
+            md = dt.datetime.strptime(ex[0].strip(), "%b %d")
+        except ValueError:
+            continue
+        year = 2000 + int(yr.group(3)) if yr else lo.year
+        d = dt.date(year, md.month, md.day)
+        if not (lo <= d <= hi):
+            continue
+        label, minutes = parse_start_time(ex[1])
+        out.append((d, clean(name.group(1)), label, minutes, "https://www.towertheatre.org" + href.group(1) if href else ""))
+    return out
+
+
+PLAYWRIGHT_PARSERS = {"tower_webflow": parse_tower_webflow}
 
 
 # ────────────────────────────── sources ──────────────────────────────
@@ -368,12 +493,36 @@ def src_venue_pages(f, days, log):
     lo, hi = days[0], days[-1]
     for vp in VENUE_PAGES:
         try:
-            h = f.get(vp["url"])
+            if vp["kind"] == "playwright":
+                key = "pw:" + vp["url"]
+                h = f.get_cached(key) or render_with_playwright(vp["url"], log)
+                if h is None:
+                    continue
+                f.put_cached(key, h)
+            else:
+                h = f.get(vp["url"])
         except Exception as e:
             log(f"{vp['venue']}: {e}")
             continue
         n = 0
-        if vp["kind"] == "jsonld":
+        if vp["kind"] == "ics":
+            for when, summary, url in parse_ics(h):
+                d = when.date()
+                if not (lo <= d <= hi):
+                    continue
+                name = titlecase_if_shouting(clean(summary))
+                if EXCLUDE.search(name):
+                    continue
+                label = f"{when.hour % 12 or 12}{':' + when.strftime('%M') if when.minute else ''}{'pm' if when.hour >= 12 else 'am'}"
+                shows.append(Show(d, name, vp["venue"], label, when.hour * 60 + when.minute, "venue-site", url or vp["url"]))
+                n += 1
+        elif vp["kind"] == "playwright":
+            for d, name, label, minutes, url in PLAYWRIGHT_PARSERS[vp["parser"]](h, lo, hi):
+                if EXCLUDE.search(name):
+                    continue
+                shows.append(Show(d, name, vp["venue"], label, minutes, "venue-site", url))
+                n += 1
+        elif vp["kind"] == "jsonld":
             for it in _iter_jsonld(h):
                 sd = it.get("startDate") or ""
                 try:

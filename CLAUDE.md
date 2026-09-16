@@ -129,10 +129,12 @@ Watch for naming variants of an existing venue (e.g. "Domino Room" vs "The Domin
 instead. Remember to `git add venues.html` alongside `shows.js` when a card was added.
 
 ### Step 0 (optional): auto-fetch a draft first
-`scripts/fetch_shows.py` pulls listings from public sources (Bend Source "Live Music"
-calendar, Bend Bulletin's weekly live-music column when it runs, Eventbrite, and
-venue sites with structured events — see `VENUE_PAGES` in the script) and writes a
-draft in the exact `shows.js` format plus a review report:
+`scripts/fetch_shows.py` pulls listings from public sources and writes a draft in the
+exact `shows.js` format plus a review report. Sources: Bend Source "Live Music"
+calendar, Bend Bulletin's weekly live-music column (when it runs), Eventbrite, and
+venue feeds/pages listed in `VENUE_PAGES` in the script — Volcanic (JSON-LD), Worthy
+(Squarespace), **Silver Moon (ICS feed from their Facebook-events widget)**, and
+**Tower Theatre (JS-rendered, via Playwright)**.
 
 ```bash
 python3 scripts/fetch_shows.py                      # next Monday's week → drafts/
@@ -140,13 +142,19 @@ python3 scripts/fetch_shows.py --week 2026-09-21    # a specific week
 python3 scripts/fetch_shows.py --week 2026-09-14 --compare shows.js   # measure recall
 ```
 
-Best run on **Tuesday** (Bend Source has the fullest week by then). Stdlib only, no
-installs. `drafts/` is git-ignored. The report lists **unknown venues** — add an alias
-to `scripts/venue_aliases.json` (name variant → the exact `venues.html` name) or add a
-venue card. It typically finds roughly a third to a half of the week's shows (venues
-whose sites are JS-rendered or Instagram-only — Silver Moon, Rivers Place, Tower,
-Hayden Homes, most bars — still need a manual check), so treat the draft as a head
-start to review against Instagram, not the finished lineup.
+One-time setup for the Playwright (Tower) source — everything else is stdlib:
+```bash
+pip3 install --user playwright && python3 -m playwright install chromium
+```
+Without it the script still runs and just notes that JS-rendered pages were skipped.
+
+Best run on **Tuesday** (Bend Source has the fullest week by then). `drafts/` is
+git-ignored; downloads are cached in `drafts/.cache` (`--no-cache` to refresh). The
+report lists **unknown venues** — add an alias to `scripts/venue_aliases.json` (name
+variant → the exact `venues.html` name) or add a venue card. Measured recall is about
+40–45% of a full week (the rest are bars that only post to Instagram/Facebook), so
+treat the draft as a head start to review against Instagram, not the finished lineup.
+To add a venue with a calendar feed, append an `"ics"` entry to `VENUE_PAGES`.
 
 ### Update prompt to use with Claude Code
 Paste the week's show listings and say:
