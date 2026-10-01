@@ -1,6 +1,5 @@
 {
   "_comment": "raw venue text (case-insensitive) -> canonical name as it appears in venues.html. Add a line whenever the fetch report lists an unknown venue.",
-
   "River's Place": "Rivers Place Taphouse",
   "Rivers Place": "Rivers Place Taphouse",
   "River Run Taphouse": "Rivers Place Taphouse",
@@ -42,10 +41,9 @@
   "Dogwood": "Dogwood at The Pine Shed",
   "The Pine Shed": "Dogwood at The Pine Shed",
   "Astro Lounge": "The Astro Lounge",
-  "Currents at Riverhouse Lodge": "Currents at Riverhouse Lodge",
-  "Currents at The Riverhouse": "Currents at Riverhouse Lodge",
-  "Riverhouse on the Deschutes": "Currents at Riverhouse Lodge",
-  "Riverhouse Lodge": "Currents at Riverhouse Lodge",
+  "Currents at Riverhouse Lodge": "Riverhouse Lodge",
+  "Currents at The Riverhouse": "Riverhouse Lodge",
+  "Riverhouse on the Deschutes": "Riverhouse Lodge",
   "Northside Bar": "Northside Bar & Grill",
   "Northside Bar and Grill": "Northside Bar & Grill",
   "Worthy Brewing Company": "Worthy Brewing",
@@ -88,5 +86,9 @@
   "Cassity's Bar": "Cassity's Bar & Grill",
   "Cassity's Bar and Grill": "Cassity's Bar & Grill",
   "Bend Oktoberfest": "Bend Oktoberfest",
-  "Fellowship at Bend": "The Fellowship at Bend"
+  "Fellowship at Bend": "The Fellowship at Bend",
+  "10 Barrel Westside Pub": "10 Barrel West Side Pub",
+  "Bevel Beer": "Bevel Craft Brewing",
+  "Niblicks": "Niblick & Greene's",
+  "Niblick and Greenes": "Niblick & Greene's"
 }

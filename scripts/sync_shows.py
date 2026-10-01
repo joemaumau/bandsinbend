@@ -99,6 +99,27 @@ def sort_minutes(time_label):
     return hour * 60 + minute
 
 
+# Separators that mark the start of support acts on a cover highlight.
+_SUPPORT = re.compile(r"\s+(?:w/|with|ft\.?|feat\.?|featuring|presents|\+)\s+", re.I)
+
+
+def cover_name(artist):
+    """Shorten a highlight to the headliner for the cover card.
+
+    'Empire of the Sun w/ Polo & Pan & Midnight Generation' -> 'Empire of the Sun'
+    'Julien-K, NITE, & Warm Gadget'                         -> 'Julien-K'
+    'Earth, Wind & Fire'                                    -> unchanged (2 parts)
+
+    Day listings keep the full billing; only the radar card is shortened.
+    """
+    head = _SUPPORT.split(artist, 1)[0].strip(" ,&-–")
+    # A comma list of three or more acts is a bill, not one band's name.
+    parts = [x for x in head.split(",") if x.strip()]
+    if len(parts) >= 3:
+        head = parts[0].strip()
+    return head.strip(" ,&-–") or artist
+
+
 # ────────────────────────────── venues ──────────────────────────────
 
 class VenueMap:
@@ -200,7 +221,7 @@ def day_label(d):
     return f"{d.strftime('%a %b')} {d.day}"
 
 
-def build(data, monday, vmap, warn):
+def build(data, monday, vmap, warn, trims, no_trim=False):
     events = validate(data, monday)
     days = [monday + dt.timedelta(days=i) for i in range(7)]
     by_day = {d: [] for d in days}
@@ -231,6 +252,7 @@ def build(data, monday, vmap, warn):
         if not artist:
             continue
         label = clean(h.get("day"))
+        hd = None
         try:
             hd = dt.date.fromisoformat(h["event_date"])
             expected = day_label(hd)
@@ -243,7 +265,16 @@ def build(data, monday, vmap, warn):
             if not label:
                 warn(f"highlight {artist!r} has no usable day label; skipped")
                 continue
-        highlights.append({"artist": artist, "day": label})
+        shown = artist if no_trim else cover_name(artist)
+        if shown != artist:
+            trims.append((artist, shown))
+        highlights.append({"artist": shown, "day": label, "_date": hd})
+
+    # Earliest to latest. The feed sends Bri's starred order; the cover card reads
+    # chronologically, matching the day sections below it.
+    highlights.sort(key=lambda h: (h["_date"] or dt.date.max))
+    for h in highlights:
+        h.pop("_date", None)
 
     return days, by_day, highlights
 
@@ -273,7 +304,7 @@ def render(monday, days, by_day, highlights):
                      f"venue: {js_str(s['venue'])}, time: {js_str(s['time'])} }},")
         L += ["    ],", "  },"]
     L += ["];", "",
-          "// Highlights shown on the cover — Bri's starred shows, in her order",
+          "// Highlights shown on the cover — Bri's starred shows, earliest to latest",
           "const HIGHLIGHTS = ["]
     for h in highlights:
         L.append(f"  {{ artist: {js_str(h['artist'])}, day: {js_str(h['day'])} }},")
@@ -315,6 +346,8 @@ def main():
     ap.add_argument("--strict", action="store_true", help="refuse to write if any venue is unknown")
     ap.add_argument("--allow-empty", action="store_true",
                     help="allow writing a week with no approved shows (off by default)")
+    ap.add_argument("--no-trim-highlights", action="store_true",
+                    help="keep full billing on cover highlights instead of just the headliner")
     ap.add_argument("--url", default=FEED, help="override the feed URL")
     args = ap.parse_args()
 
@@ -334,7 +367,8 @@ def main():
     print(f"  feed OK — {url}")
 
     vmap = VenueMap(load_canonical_venues(), load_aliases())
-    days, by_day, highlights = build(data, monday, vmap, warn)
+    trims = []
+    days, by_day, highlights = build(data, monday, vmap, warn, trims, args.no_trim_highlights)
     total = sum(len(v) for v in by_day.values())
 
     print(f"\n  {total} approved shows, {len(highlights)} highlights")
@@ -364,8 +398,13 @@ def main():
         for w in warnings:
             print(f"    - {w}")
 
+    if trims:
+        print(f"\n  cover names shortened ({len(trims)}):")
+        for full, short in trims:
+            print(f"    {full!r} → {short!r}")
+
     if highlights:
-        print("\n  highlights:")
+        print("\n  highlights (earliest to latest):")
         for h in highlights:
             print(f"    {h['day']:11} {h['artist']}")
 
