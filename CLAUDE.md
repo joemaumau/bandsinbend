@@ -128,33 +128,44 @@ Watch for naming variants of an existing venue (e.g. "Domino Room" vs "The Domin
 — those are the SAME venue and should NOT get a duplicate card; flag the inconsistency
 instead. Remember to `git add venues.html` alongside `shows.js` when a card was added.
 
-### Step 0 (optional): auto-fetch a draft first
-`scripts/fetch_shows.py` pulls listings from public sources and writes a draft in the
-exact `shows.js` format plus a review report. Sources: Bend Source "Live Music"
-calendar, Bend Bulletin's weekly live-music column (when it runs), Eventbrite, and
-venue feeds/pages listed in `VENUE_PAGES` in the script — Volcanic (JSON-LD), Worthy
-(Squarespace), **Silver Moon (ICS feed from their Facebook-events widget)**, and
-**Tower Theatre (JS-rendered, via Playwright)**.
+### Step 0: sync shows.js from the approved-shows feed
+Bri reviews and approves the week's shows in the Desk (a tool built by Greg, a
+developer working with her). Approved shows are published on a public,
+read-only JSON feed, and `scripts/sync_shows.py` turns that feed into `shows.js`:
 
 ```bash
-python3 scripts/fetch_shows.py                      # next Monday's week → drafts/
-python3 scripts/fetch_shows.py --week 2026-09-21    # a specific week
-python3 scripts/fetch_shows.py --week 2026-09-14 --compare shows.js   # measure recall
+python3 scripts/sync_shows.py                    # next Monday's week → shows.js
+python3 scripts/sync_shows.py --week 2026-10-05  # a specific week
+python3 scripts/sync_shows.py --dry-run          # report only, write nothing
+python3 scripts/sync_shows.py --strict           # stop if any venue is unknown
 ```
 
-One-time setup for the Playwright (Tower) source — everything else is stdlib:
-```bash
-pip3 install --user playwright && python3 -m playwright install chromium
-```
-Without it the script still runs and just notes that JS-rendered pages were skipped.
+Feed: `https://bands-in-bend-desk.geland.workers.dev/api/v1/approved-events?week_start=YYYY-MM-DD`
+(no sign-in; returns only shows Bri has approved — anything still in review or
+marked 👎 is excluded upstream). Stdlib only, no installs.
 
-Best run on **Tuesday** (Bend Source has the fullest week by then). `drafts/` is
-git-ignored; downloads are cached in `drafts/.cache` (`--no-cache` to refresh). The
-report lists **unknown venues** — add an alias to `scripts/venue_aliases.json` (name
-variant → the exact `venues.html` name) or add a venue card. Measured recall is about
-40–45% of a full week (the rest are bars that only post to Instagram/Facebook), so
-treat the draft as a head start to review against Instagram, not the finished lineup.
-To add a venue with a calendar feed, append an `"ics"` entry to `VENUE_PAGES`.
+**Run it after Bri finishes reviewing**, then review `git diff shows.js`, commit,
+and push. Re-run it any time she changes the calendar. The site stays static —
+this only rewrites a data file, so there is no runtime dependency on the feed.
+
+The script writes artist names and times through **exactly** as the feed gives
+them, and corrects **only** venue names, mapping the feed's display names
+("Niblicks", "The Capital") onto the exact names on the `venues.html` cards via
+`scripts/venue_aliases.json`. It reports every correction it makes, and warns
+loudly about venues it can't resolve or that have no card yet — fix those (add
+an alias line, or add a venue card) before committing.
+
+Safety: it refuses to write an empty `shows.js` if the feed returns no approved
+shows (the usual sign Bri hasn't finished), refuses if the feed returns a
+different week than requested, retries the request 3×, and writes atomically so
+a failure never leaves a half-written file.
+
+### Step 0b (fallback): the old scraper
+`scripts/fetch_shows.py` predates the Desk and scrapes public sources directly
+(Bend Source, Eventbrite, Silver Moon's ICS feed, Volcanic/Worthy/Tower). It
+reached roughly 40–45% of a week on its own. Keep it only as a cross-check or a
+fallback if the feed is ever unavailable; the feed is the source of truth now.
+See its `--help` for usage.
 
 ### Update prompt to use with Claude Code
 Paste the week's show listings and say:
