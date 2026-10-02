@@ -1,6 +1,7 @@
 // ─────────────────────────────────────────────
 // BANDS IN BEND — Weekly Show Data
-// Update this file each week to refresh the site
+// Synced from the approved-shows feed by scripts/sync_shows.py
+// Week of 2026-09-28 · generated 2026-10-02
 // ─────────────────────────────────────────────
 
 const WEEK = {
@@ -13,9 +14,9 @@ const SHOWS = [
     day: "Monday",
     date: "September 28",
     shows: [
+      { artist: "Open Mic", venue: "Wetlands Taphouse", time: "5pm" },
       { artist: "Bluegrass Collective", venue: "Silver Moon Brewing", time: "6pm" },
       { artist: "The Hands w/ Crooked Looks & More...", venue: "Volcanic Theatre Pub", time: "7pm" },
-      { artist: "Open Mic", venue: "The Astro Lounge", time: "8pm" },
       { artist: "Vinyl Night", venue: "M&J Tavern", time: "9pm" },
     ],
   },
@@ -53,6 +54,7 @@ const SHOWS = [
     date: "October 1",
     shows: [
       { artist: "Breanna Gonzalez", venue: "The Lot", time: "6pm" },
+      { artist: "Doc Monos", venue: "Mountain Burger", time: "6pm" },
       { artist: "Haute Melange", venue: "Stoller Wine Bar", time: "6pm" },
       { artist: "Irish Trad Session", venue: "The Cellar", time: "6pm" },
       { artist: "Piña Colada", venue: "Rivers Place Taphouse", time: "6pm" },
@@ -65,10 +67,14 @@ const SHOWS = [
     date: "October 2",
     shows: [
       { artist: "James Nicol (12pm), Sugar Mama (3pm), Rusty Frets (6pm)", venue: "Bend Brewing Company", time: "12-8pm" },
+      { artist: "DJ Reflex", venue: "Pine Mountain Sports", time: "4:30pm" },
       { artist: "Ant Vella", venue: "Teal Tea & Art Lounge", time: "5pm" },
       { artist: "Gene Rogers", venue: "Wetlands Taphouse", time: "5pm" },
+      { artist: "Joyful Lane", venue: "Willow Wild", time: "5pm" },
       { artist: "Rise Up and Groove", venue: "Elevation Market", time: "5pm" },
       { artist: "Shineola Singalong", venue: "The Commonwealth Pub", time: "5pm" },
+      { artist: "Mark Creech", venue: "The Lake House at Caldera Springs", time: "5:15pm" },
+      { artist: "Doc Monos", venue: "BrownBag Popcorn Co.", time: "6pm" },
       { artist: "Evan Mullins", venue: "Silverleaf Cafe", time: "6pm" },
       { artist: "Haystack Jack", venue: "Lazy Z Ranch", time: "6pm" },
       { artist: "Black Label Society w/ Zakk Sabbath & Dark Chapel", venue: "Hayden Homes Amphitheater", time: "6:30pm" },
@@ -78,6 +84,7 @@ const SHOWS = [
       { artist: "Desperate Electric", venue: "Silver Moon Brewing", time: "7pm" },
       { artist: "Doc Cosden", venue: "Riverhouse Lodge", time: "7pm" },
       { artist: "Dry Canyon Stampede", venue: "The Commonwealth Pub", time: "8pm" },
+      { artist: "Briantology", venue: "Dogwood at The Pine Shed", time: "9pm" },
       { artist: "DJ HumbleBeatz", venue: "The Coyote", time: "9pm" },
       { artist: "DJ Luna & DJ Panda", venue: "The Capitol", time: "9pm" },
       { artist: "The CartWrights", venue: "M&J Tavern", time: "9pm" },
@@ -89,6 +96,7 @@ const SHOWS = [
     shows: [
       { artist: "Kimberly June Warren (12pm), Samantha Hart (3pm), Double Jump (6pm)", venue: "Bend Brewing Company", time: "12-8pm" },
       { artist: "Yachtoberfest ft. Red Red & DJ RelykOne", venue: "Midtown Yacht Club", time: "1-9pm" },
+      { artist: "Bella Cooper", venue: "Goodlife Brewing Company", time: "3:00–5:00pm" },
       { artist: "Cover City", venue: "On Tap", time: "5pm" },
       { artist: "Evan Mullins Duo", venue: "Wetlands Taphouse", time: "5pm" },
       { artist: "Mark Creech", venue: "Stoller Wine Bar", time: "5pm" },
@@ -105,6 +113,7 @@ const SHOWS = [
       { artist: "Briantology, Lunallday, Owen Stone, ROMZ", venue: "Silver Moon Brewing", time: "9pm" },
       { artist: "Chiggi Momo w/ Sit Pretty, Sungrater", venue: "M&J Tavern", time: "9pm" },
       { artist: "DJ Raider Mystic", venue: "The Coyote", time: "9pm" },
+      { artist: "Giancarlo", venue: "Dogwood at The Pine Shed", time: "9pm" },
       { artist: "Dirty Tricks ft. Greg Garretson, Ells, Dirty Nature", venue: "Volcanic Theatre Pub", time: "10pm" },
     ],
   },
@@ -114,6 +123,7 @@ const SHOWS = [
     shows: [
       { artist: "Coyote Rider", venue: "Riverhouse Lodge", time: "11am" },
       { artist: "Ant Vella", venue: "The Good Drop Wine Shoppe", time: "2pm" },
+      { artist: "The Have Nothings", venue: "Goodlife Brewing Company", time: "4:00–6:00pm" },
       { artist: "Bobby Lindstrom Duo", venue: "Rivers Place Taphouse", time: "5pm" },
       { artist: "Fine Folk w/ Jesus Christ Taxi Driver, Chris Beland", venue: "Silver Moon Brewing", time: "6pm" },
       { artist: "Nekrogoblikon", venue: "Volcanic Theatre Pub", time: "7pm" },
@@ -121,7 +131,7 @@ const SHOWS = [
   },
 ];
 
-// Highlights shown on the cover — update each week
+// Highlights shown on the cover — Bri's starred shows, earliest to latest
 const HIGHLIGHTS = [
   { artist: "Julien-K", day: "Tue Sep 29" },
   { artist: "The Great North Special", day: "Wed Sep 30" },
