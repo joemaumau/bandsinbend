@@ -1,8 +1,8 @@
 {
   "_comment": "raw venue text (case-insensitive) -> canonical name as it appears in venues.html. Add a line whenever the fetch report lists an unknown venue.",
-  "River's Place": "Rivers Place Taphouse",
-  "Rivers Place": "Rivers Place Taphouse",
-  "River Run Taphouse": "Rivers Place Taphouse",
+  "River's Place": "River's Place Taphouse",
+  "Rivers Place": "River's Place Taphouse",
+  "River Run Taphouse": "River's Place Taphouse",
   "Volcanic Theater Pub": "Volcanic Theatre Pub",
   "Volcanic Theatre": "Volcanic Theatre Pub",
   "Volcanic Theater Courtyard": "Volcanic Theatre Pub",
@@ -10,7 +10,7 @@
   "Domino Room": "The Domino Room",
   "Midtown Ballroom/Domino Room": "Midtown Ballroom",
   "Midtown Ballroom Annex": "Midtown Ballroom Annex",
-  "The Annex": "Midtown Ballroom Annex",
+  "The Annex": "General Duffy's Annex",
   "Silver Moon": "Silver Moon Brewing",
   "Father Luke's": "Father Luke's Room",
   "Father Lukes": "Father Luke's Room",
@@ -95,5 +95,16 @@
   "Lake House at Caldera Springs": "The Lake House at Caldera Springs",
   "Brown Bag Popcorn Company": "BrownBag Popcorn Co.",
   "Brown Bag Popcorn": "BrownBag Popcorn Co.",
-  "BrownBag Popcorn": "BrownBag Popcorn Co."
+  "BrownBag Popcorn": "BrownBag Popcorn Co.",
+  "Rivers Place Taphouse": "River's Place Taphouse",
+  "River's Place Taphouse": "River's Place Taphouse",
+  "River's Place Tap House": "River's Place Taphouse",
+  "Wonderland Chicken": "Wonderland Chicken Co.",
+  "Still Vibrato": "Still Vibrato Coffee Roasting",
+  "Backporch Coffee Roasters - Greenwood": "Backporch Coffee Roasters",
+  "Backporch Coffee Roasters Greenwood Ave.": "Backporch Coffee Roasters",
+  "Faith, Hope & Charity Vineyards (Terrebonne)": "Faith Hope & Charity Vineyards",
+  "Faith, Hope and Charity Vineyards": "Faith Hope & Charity Vineyards",
+  "General Duffy's Annex Sports Bar (Redmond)": "General Duffy's Annex",
+  "General Duffy's Annex Sports Bar": "General Duffy's Annex"
 }

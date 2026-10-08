@@ -100,7 +100,7 @@ def sort_minutes(time_label):
 
 
 # Separators that mark the start of support acts on a cover highlight.
-_SUPPORT = re.compile(r"\s+(?:w/|with|ft\.?|feat\.?|featuring|presents|\+)\s+", re.I)
+_SUPPORT = re.compile(r"[\s,]+(?:w/|with|ft\.?|feat\.?|featuring|presents|supported\s+by|support\s+from|\+)\s+", re.I)
 
 
 def cover_name(artist):
