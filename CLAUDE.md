@@ -10,7 +10,7 @@ Bands in Bend (bandsinbend.com) is a hyperlocal live music discovery platform fo
 - **GitHub Repo:** https://github.com/joemaumau/bandsinbend
 - **Local repo path:** ~/Documents/GitHub/bandsinbend (or wherever cloned)
 - **Host:** GitHub Pages (free, deploys on push to main)
-- **Domain registrar:** Namecheap
+- **Domain registrar + DNS:** Cloudflare, in Greg's account (transferred from Joe's Namecheap on 2026-10-08). DNS, email forwarding (hello@ → bandsinbend@gmail.com) and renewals are Greg's.
 
 ---
 
